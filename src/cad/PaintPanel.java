@@ -10,7 +10,9 @@ public class PaintPanel extends JPanel {
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawLine(0,0,50,50);
+        Target target=new Target(g);
+        target.draw();
+
         g.drawString("bannwe",0,40);
     }
 
