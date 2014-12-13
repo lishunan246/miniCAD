@@ -1,0 +1,8 @@
+*.class
+*.xml
+*.class
+*.class
+.idea/copyright/profiles_settings.xml
+.idea/scopes/scope_settings.xml
+.idea/copyright/profiles_settings.xml
+out/production/miniCAD/cad/MainWindow.class
