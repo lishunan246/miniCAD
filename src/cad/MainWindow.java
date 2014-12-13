@@ -18,9 +18,10 @@ public class MainWindow extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(new PaintPanel());
+        PaintPanel paintPanel=new PaintPanel();
+        this.add(paintPanel);
 
-        cadMenuBar=new CADMenuBar();
+        cadMenuBar=new CADMenuBar(paintPanel);
         this.setJMenuBar(cadMenuBar);
 
         this.setVisible(true);
