@@ -7,12 +7,21 @@ import java.awt.*;
  */
 public class CADString extends Target {
     private String string;
+    private String type="string";
+    static int count=0;
+
+    CADString()
+    {
+        count++;
+        string=String.valueOf(count);
+        name=type+" "+string;
+        System.out.println(name);
+    }
+
 
     public void draw(Graphics g)
     {
-        string="dssf";
-        g.drawString(string,x,y);
-        g.drawString("bannwe",0,40);
+        g.drawString(string,0,40);
     }
 
 

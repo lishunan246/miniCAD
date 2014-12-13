@@ -9,6 +9,7 @@ public class Target {
     protected Color color;
     protected int x=0;
     protected int y=0;
+    protected String name;
 
     Target()
     {
