@@ -10,12 +10,19 @@ public class CADMenuBar extends JMenuBar {
     {
         JMenu fileMenu=new JMenu("FILE");
         this.add(fileMenu);
-        JMenuItem add=new JMenuItem("add");
-        add.setActionCommand("add");
+
+        JMenuItem add=new JMenuItem("Quit");
+        add.setActionCommand("quit");
         add.addActionListener(paintPanel);
-
-
         fileMenu.add(add);
+
+        JMenu addMenu=new JMenu("Add");
+        this.add(addMenu);
+
+        JMenuItem jMenuItem=new JMenuItem("String");
+        jMenuItem.setActionCommand("addString");
+        jMenuItem.addActionListener(paintPanel);
+        addMenu.add(jMenuItem);
 
         this.setVisible(true);
     }

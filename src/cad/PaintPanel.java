@@ -14,23 +14,29 @@ public class PaintPanel extends JPanel implements ActionListener{
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        Target target=new Target(g);
+        Target target=new Target();
         arrayList.add(target);
 
         for(Target target1:arrayList)
         {
-            target1.draw();
+            target1.draw(g);
         }
 
-        g.drawString("bannwe",0,40);
+
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        if("add".equals(e.getActionCommand()))
+        System.out.println(e.getActionCommand());
+        if("quit".equals(e.getActionCommand()))
         {
             System.exit(0);
         }
+        else if("addString".equals(e.getActionCommand()))
+        {
+            arrayList.add(new CADString());
+        }
+        this.repaint();
     }
 
 

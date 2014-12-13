@@ -6,17 +6,16 @@ import java.awt.*;
  * Created by lishunan on 14-12-13.
  */
 public class Target {
-    private Color color;
-    private int x;
-    private int y;
-    Graphics g;
+    protected Color color;
+    protected int x=0;
+    protected int y=0;
 
-    Target(Graphics g)
+    Target()
     {
-        this.g=g;
+
     }
 
-    public void draw()
+    public void draw(Graphics g)
     {
         g.drawLine(0,0,50,50);
     }
