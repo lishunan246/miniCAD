@@ -14,14 +14,23 @@ public class CADString extends Target {
     {
         count++;
         string=String.valueOf(count);
-        name=type+" "+string;
-        System.out.println(name);
+//        name=type+" "+string;
+//        System.out.println(name);
     }
+
+    CADString(Point startPoint,Point endPoint)
+    {
+
+        super(startPoint,endPoint);
+        count++;
+        string=String.valueOf(count);
+    }
+
 
 
     public void draw(Graphics g)
     {
-        g.drawString(string,0,40);
+        g.drawString("??????",startPoint.x,startPoint.y);
     }
 
 
