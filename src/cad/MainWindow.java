@@ -28,38 +28,49 @@ public class MainWindow extends JFrame implements ActionListener{
 
         cadMenuBar=new JMenuBar();
 
-            JMenu fileMenu=new JMenu("FILE");
-            cadMenuBar.add(fileMenu);
+            JMenu menu=new JMenu("FILE");
+            cadMenuBar.add(menu);
 
                 JMenuItem add=new JMenuItem("Quit");
                 add.setActionCommand("quit");
                 add.addActionListener(this);
-                fileMenu.add(add);
+                menu.add(add);
 
-            JMenu addMenu=new JMenu("Add");
-            cadMenuBar.add(addMenu);
+            menu=new JMenu("Add");
+            cadMenuBar.add(menu);
 
                 JMenuItem jMenuItem=new JMenuItem("String");
                 jMenuItem.setActionCommand("addString");
                 //jMenuItem.addActionListener(paintPanel);
                 jMenuItem.addActionListener(this);
-                addMenu.add(jMenuItem);
+                menu.add(jMenuItem);
 
                 jMenuItem =new JMenuItem("Line");
                 jMenuItem.setActionCommand("addLine");
                 jMenuItem.addActionListener(this);
-                addMenu.add(jMenuItem);
+                menu.add(jMenuItem);
 
                 jMenuItem =new JMenuItem("Rectangle");
                 jMenuItem.setActionCommand("addRectangle");
                 jMenuItem.addActionListener(this);
-                addMenu.add(jMenuItem);
+                menu.add(jMenuItem);
 
                 jMenuItem =new JMenuItem("Circle");
                 jMenuItem.setActionCommand("addCircle");
                 jMenuItem.addActionListener(this);
-                addMenu.add(jMenuItem);
+                menu.add(jMenuItem);
 
+            menu=new JMenu("EDIT");
+                jMenuItem=new JMenuItem("Move");
+                jMenuItem.setActionCommand("move");
+                jMenuItem.addActionListener(this);
+                menu.add(jMenuItem);
+
+                jMenuItem=new JMenuItem("Resize");
+                jMenuItem.setActionCommand("resize");
+                jMenuItem.addActionListener(this);
+                menu.add(jMenuItem);
+            cadMenuBar.add(menu);
 
         cadMenuBar.setVisible(true);
 
@@ -79,15 +90,15 @@ public class MainWindow extends JFrame implements ActionListener{
         }
         else if("addString".equals(e.getActionCommand()))
         {
-            System.out.print("dd");
-            JDialog jDialog=new JDialog(this,"New String");
-            jDialog.setSize(100,200);
-            jDialog.setLocationRelativeTo(this);
-
-            JTextField jTextField=new JTextField("",2);
-            jDialog.add(jTextField);
-            //jDialog.add(paintPanel);
-            jDialog.setVisible(true);
+//            System.out.print("dd");
+//            JDialog jDialog=new JDialog(this,"New String");
+//            jDialog.setSize(100,200);
+//            jDialog.setLocationRelativeTo(this);
+//
+//            JTextField jTextField=new JTextField("",2);
+//            jDialog.add(jTextField);
+//            //jDialog.add(paintPanel);
+//            jDialog.setVisible(true);
             paintPanel.mode=paintPanel.mode.addString;
         }
         else if("addCircle".equals(e.getActionCommand()))

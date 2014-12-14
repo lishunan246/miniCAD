@@ -2,35 +2,58 @@ package cad;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
  * Created by lishunan on 14-12-13.
  */
-public class PaintPanel extends JPanel implements MouseListener{
+public class PaintPanel extends JPanel implements MouseListener,MouseMotionListener{
+
     enum Mode{
         addString,addCircle,addRectangle,addLine,select,edit;
     }
     protected Point startPoint,endPoint;
     protected ArrayList <Target> arrayList=new ArrayList<Target>();
     public Mode mode=Mode.select;
+    protected boolean showCurrentRec=false;
 
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        Target target=new Target();
-        arrayList.add(target);
 
-        for(Target target1:arrayList)
+        for(Target target:arrayList)
         {
-            target1.draw(g);
+            target.draw(g);
+            target.emphasize(g);
         }
 
+        if(showCurrentRec)
+        {
+            switch (mode) {
+                case addString:
+                    new CADString(startPoint,endPoint).draw(g);
+                    break;
+                case addCircle:
+                    new CADCircle(startPoint,endPoint).draw(g);
+                    break;
+                case addRectangle:
+                    new CADRectangle(startPoint, endPoint).draw(g);
+                    break;
+                case addLine:
+                    new CADLine(startPoint,endPoint).draw(g);
+                    break;
+                case select:
+                    break;
+                case edit:
+                    break;
+            }
+
+        }
+
+
         this.addMouseListener(this);
+        this.addMouseMotionListener(this);
 
     }
 
@@ -43,6 +66,7 @@ public class PaintPanel extends JPanel implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         startPoint=e.getPoint();
+        showCurrentRec=true;
 //        System.out.print("start: ");
 //        System.out.println(startPoint);
     }
@@ -55,7 +79,6 @@ public class PaintPanel extends JPanel implements MouseListener{
         switch (mode) {
             case addString:
                 arrayList.add(new CADString(startPoint,endPoint));
-                System.out.print("dd");
                 break;
             case addCircle:
                 arrayList.add(new CADCircle(startPoint,endPoint));
@@ -71,7 +94,9 @@ public class PaintPanel extends JPanel implements MouseListener{
             case edit:
                 break;
         }
+        showCurrentRec=false;
         repaint();
+
     }
 
     @Override
@@ -83,4 +108,19 @@ public class PaintPanel extends JPanel implements MouseListener{
     public void mouseExited(MouseEvent e) {
 
     }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        endPoint=e.getPoint();
+        System.out.println(showCurrentRec);
+        repaint();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+
+
 }

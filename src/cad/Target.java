@@ -23,7 +23,7 @@ public class Target {
         else
         {
             x=endPoint.x;
-            w=startPoint.x-startPoint.y;
+            w=startPoint.x-endPoint.x;
         }
 
         if(startPoint.y<endPoint.y)
@@ -45,8 +45,13 @@ public class Target {
     }
 
     public void draw(Graphics g)
+    {}
+
+    public void emphasize(Graphics g)
     {
-        g.drawLine(0,0,50,50);
+        int a=4;
+        g.fillRect(startPoint.x-a,startPoint.y-a,2*a,2*a);
+        g.fillRect(endPoint.x-a,endPoint.y-a,2*a,2*a);
     }
 
 
