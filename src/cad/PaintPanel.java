@@ -130,6 +130,14 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
             {
                 current.moveToPoint(e.getPoint());
             }
+            else if(current.canChangeStartPoint(e.getPoint()))
+            {
+                current.changeStartPoint(e.getPoint());
+            }
+            else if(current.canChangeEndPoint(e.getPoint()))
+            {
+                current.changeEndPoint(e.getPoint());
+            }
 
             repaint();
             return;

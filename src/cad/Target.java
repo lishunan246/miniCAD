@@ -15,8 +15,6 @@ public class Target {
         this.startPoint=startPoint;
         this.endPoint=endPoint;
 
-        this.centerPoint=new Point((startPoint.x+endPoint.x)/2,(startPoint.y+endPoint.y)/2);
-
         updateXYWH();
         //System.out.println("created");
     }
@@ -29,6 +27,8 @@ public class Target {
 
     private void updateXYWH()
     {
+        this.centerPoint=new Point((startPoint.x+endPoint.x)/2,(startPoint.y+endPoint.y)/2);
+
         if(startPoint.x<endPoint.x)
         {
             x=startPoint.x;
@@ -102,7 +102,26 @@ public class Target {
         startPoint.x+=x;
         endPoint.y+=y;
         endPoint.x+=x;
-        centerPoint=point;
+
+        updateXYWH();
+    }
+
+    public void changeStartPoint(Point point) {
+        startPoint=point;
+
+        updateXYWH();
+    }
+
+    public boolean canChangeStartPoint(Point point) {
+        return veryVeryClose(point,startPoint);
+    }
+
+    public boolean canChangeEndPoint(Point point) {
+        return veryVeryClose(point,endPoint);
+    }
+
+    public void changeEndPoint(Point point) {
+        endPoint=point;
         updateXYWH();
     }
 }
