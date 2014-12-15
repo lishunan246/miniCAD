@@ -61,15 +61,15 @@ public class MainWindow extends JFrame implements ActionListener{
                 menu.add(jMenuItem);
 
             menu=new JMenu("EDIT");
-                jMenuItem=new JMenuItem("Move");
-                jMenuItem.setActionCommand("move");
+                jMenuItem=new JMenuItem("Select");
+                jMenuItem.setActionCommand("select");
                 jMenuItem.addActionListener(this);
                 menu.add(jMenuItem);
 
-                jMenuItem=new JMenuItem("Resize");
-                jMenuItem.setActionCommand("resize");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+//                jMenuItem=new JMenuItem("Resize");
+//                jMenuItem.setActionCommand("resize");
+//                jMenuItem.addActionListener(this);
+//                menu.add(jMenuItem);
             cadMenuBar.add(menu);
 
         cadMenuBar.setVisible(true);
@@ -112,6 +112,10 @@ public class MainWindow extends JFrame implements ActionListener{
         else if("addLine".equals(e.getActionCommand()))
         {
             paintPanel.mode= PaintPanel.Mode.addLine;
+        }
+        else if("select".equals(e.getActionCommand()))
+        {
+            paintPanel.mode= PaintPanel.Mode.select;
         }
     }
 }
