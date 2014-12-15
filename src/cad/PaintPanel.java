@@ -66,25 +66,12 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if(current==null)
-            return;
-        current.moveToPoint(e.getPoint());
         repaint();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(mode==Mode.select)
-        {
-            if(current==null)
-                return;
-            if(current.canBeMoved(e.getPoint()))
-            {
-               // startPoint=current.startPoint;
-                //endPoint=current.endPoint;
-            }
-            return;
-        }
+
         startPoint=e.getPoint();
         showCurrentRec=true;
 //        System.out.print("start: ");
@@ -94,7 +81,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
     @Override
     public void mouseReleased(MouseEvent e) {
         endPoint=e.getPoint();
-//        System.out.print("end: ");
+        //System.out.print("end: ");
 //        System.out.println(endPoint);
         switch (mode) {
             case addString:
@@ -139,7 +126,10 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
         {
             if(current==null)
                 return;
-            current.moveToPoint(e.getPoint());
+            if(current.canBeMoved(e.getPoint()))
+            {
+                current.moveToPoint(e.getPoint());
+            }
 
             repaint();
             return;
@@ -151,22 +141,15 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for(int i=0;i<arrayList.size();i++)
+
+        for(Target target:arrayList)
         {
-            if(arrayList.get(i).pick(e.getPoint()))
+            if(target.pick(e.getPoint()))
             {
-                current=arrayList.get(i);
+                current=target;
                 break;
             }
         }
-//        for(Target target:arrayList)
-//        {
-//            if(target.pick(e.getPoint()))
-//            {
-//                current=target;
-//                break;
-//            }
-//        }
 //        System.out.print("moving");
 //        System.out.println(showCurrentRec);
         repaint();

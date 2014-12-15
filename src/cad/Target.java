@@ -15,7 +15,7 @@ public class Target {
         this.startPoint=startPoint;
         this.endPoint=endPoint;
 
-        centerPoint=new Point((startPoint.x+endPoint.x)/2,(startPoint.y+endPoint.y)/2);
+        this.centerPoint=new Point((startPoint.x+endPoint.x)/2,(startPoint.y+endPoint.y)/2);
 
         updateXYWH();
         //System.out.println("created");
