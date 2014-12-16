@@ -38,7 +38,6 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
         for(Target target:arrayList)
         {
             target.draw(g);
-            //target.emphasize(g);
         }
 
         if(current!=null)
@@ -84,15 +83,12 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 
         startPoint=e.getPoint();
         showCurrentRec=true;
-//        System.out.print("start: ");
-//        System.out.println(startPoint);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         endPoint=e.getPoint();
-        //System.out.print("end: ");
-//        System.out.println(endPoint);
+
         switch (mode) {
             case addString:
                 arrayList.add(new CADString(startPoint,endPoint,globalColor,globalString));
@@ -130,8 +126,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 
     @Override
     public void mouseDragged(MouseEvent e) {
-//        System.out.print("dragging");
-//        System.out.println(showCurrentRec);
+
         if(mode==Mode.select)
         {
             if(current==null)
@@ -168,8 +163,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
                 break;
             }
         }
-//        System.out.print("moving");
-//        System.out.println(showCurrentRec);
+
         repaint();
     }
 

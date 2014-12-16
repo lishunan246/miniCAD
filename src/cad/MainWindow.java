@@ -84,6 +84,11 @@ public class MainWindow extends JFrame implements ActionListener{
                 jMenuItem.addActionListener(this);
                 menu.add(jMenuItem);
 
+        jMenuItem=new JMenuItem("Delete");
+        jMenuItem.setActionCommand("delete");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
+
                 jMenuItem=new JMenuItem("Choose color");
                 jMenuItem.setActionCommand("chooseColor");
                 jMenuItem.addActionListener(this);
@@ -114,15 +119,6 @@ public class MainWindow extends JFrame implements ActionListener{
 
             paintPanel.globalString=input;
 
-//            System.out.print("dd");
-//            JDialog jDialog=new JDialog(this,"New String");
-//            jDialog.setSize(100,200);
-//            jDialog.setLocationRelativeTo(this);
-//
-//            JTextField jTextField=new JTextField("",2);
-//            jDialog.add(jTextField);
-//            //jDialog.add(paintPanel);
-//            jDialog.setVisible(true);
             paintPanel.mode=paintPanel.mode.addString;
         }
         else if("addCircle".equals(e.getActionCommand()))
@@ -231,6 +227,24 @@ public class MainWindow extends JFrame implements ActionListener{
                 }
 
             }
+        }
+        else if("delete".equals(e.getActionCommand()))
+        {
+            if(paintPanel.current==null)
+                return;
+
+            for (int i=0;i<paintPanel.arrayList.size();i++)
+            {
+                if (paintPanel.current==paintPanel.arrayList.get(i))
+                {
+                    paintPanel.arrayList.remove(i);
+                    System.out.print("del");
+                    paintPanel.current=null;
+                    break;
+                }
+            }
+            //paintPanel.arrayList.remove(paintPanel.current);
+            repaint();
         }
     }
 }
