@@ -11,7 +11,11 @@ import java.util.ArrayList;
 public class PaintPanel extends JPanel implements MouseListener,MouseMotionListener{
 
 
-    public String globalString="text";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String globalString="text";
 
     enum Mode{
         addString,addCircle,addRectangle,addLine,select,edit;

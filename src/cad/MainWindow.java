@@ -12,7 +12,11 @@ import java.io.*;
  * Created by lishunan on 14-12-13.
  */
 public class MainWindow extends JFrame implements ActionListener{
-    private JMenuBar cadMenuBar;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JMenuBar cadMenuBar;
     protected PaintPanel paintPanel;
 
     MainWindow()
@@ -54,12 +58,11 @@ public class MainWindow extends JFrame implements ActionListener{
         add.addActionListener(this);
         menu.add(add);
 
-            menu=new JMenu("Add");
+            menu=new JMenu("ADD");
             cadMenuBar.add(menu);
 
                 JMenuItem jMenuItem=new JMenuItem("String");
                 jMenuItem.setActionCommand("addString");
-                //jMenuItem.addActionListener(paintPanel);
                 jMenuItem.addActionListener(this);
                 menu.add(jMenuItem);
 
@@ -119,7 +122,7 @@ public class MainWindow extends JFrame implements ActionListener{
 
             paintPanel.globalString=input;
 
-            paintPanel.mode=paintPanel.mode.addString;
+            paintPanel.mode=PaintPanel.Mode.addString;
         }
         else if("addCircle".equals(e.getActionCommand()))
         {
@@ -139,7 +142,7 @@ public class MainWindow extends JFrame implements ActionListener{
         }
         else if("chooseColor".equals(e.getActionCommand()))
         {
-            Color color=new JColorChooser().showDialog(this,"Choose a color",Color.BLACK);
+            Color color=JColorChooser.showDialog(this,"Choose a color",Color.BLACK);
             paintPanel.globalColor=color;
             if(paintPanel.current!=null)
                 paintPanel.current.setColor(color);

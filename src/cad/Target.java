@@ -1,11 +1,9 @@
 package cad;
 
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.awt.*;
-import java.io.PrintWriter;
 
 /**
  * Created by lishunan on 14-12-13.

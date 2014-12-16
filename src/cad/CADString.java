@@ -9,7 +9,6 @@ import java.awt.*;
  */
 public class CADString extends Target {
     private String string;
-    private String type="string";
     static int count=0;
 
     CADString(JsonObject jsonObject)
