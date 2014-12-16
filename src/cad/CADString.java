@@ -15,16 +15,15 @@ public class CADString extends Target {
     CADString(JsonObject jsonObject)
     {
         super(jsonObject);
+        this.string=jsonObject.getString("string");
     }
 
 
-    CADString(Point startPoint, Point endPoint, Color globalColor)
+    CADString(Point startPoint, Point endPoint, Color globalColor,String string)
     {
         super(startPoint,endPoint,globalColor);
         count++;
-        string=String.valueOf(count);
-//        name=type+" "+string;
-//        System.out.println(name);
+        this.string=string;
     }
 
 
@@ -34,11 +33,14 @@ public class CADString extends Target {
     public void draw(Graphics g)
     {
         super.draw(g);
-        g.drawString("??????",startPoint.x,startPoint.y);
+        g.drawString(string,startPoint.x,startPoint.y);
     }
 
     @Override
     public JsonObjectBuilder getJsonObjectBuilder() {
-        return super.getJsonObjectBuilder().add("type","string");
+
+        return super.getJsonObjectBuilder()
+                .add("type","string")
+                .add("string",string);
     }
 }

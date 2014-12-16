@@ -108,6 +108,12 @@ public class MainWindow extends JFrame implements ActionListener{
         }
         else if("addString".equals(e.getActionCommand()))
         {
+            String input= JOptionPane.showInputDialog(this,"Input text");
+            if(input==null)
+                return;
+
+            paintPanel.globalString=input;
+
 //            System.out.print("dd");
 //            JDialog jDialog=new JDialog(this,"New String");
 //            jDialog.setSize(100,200);
@@ -147,7 +153,7 @@ public class MainWindow extends JFrame implements ActionListener{
         else if("save".equals(e.getActionCommand()))
         {
             JFileChooser jFileChooser=new JFileChooser();
-            //int n=jFileChooser.showSaveDialog(this);
+
             if(jFileChooser.showSaveDialog(this)==JFileChooser.APPROVE_OPTION)
             {
                 System.out.println(jFileChooser.getSelectedFile().toString());

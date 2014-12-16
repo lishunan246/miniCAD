@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class PaintPanel extends JPanel implements MouseListener,MouseMotionListener{
 
 
+    public String globalString="text";
 
     enum Mode{
         addString,addCircle,addRectangle,addLine,select,edit;
@@ -47,7 +48,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
         {
             switch (mode) {
                 case addString:
-                    new CADString(startPoint,endPoint,globalColor).draw(g);
+                    new CADString(startPoint,endPoint,globalColor,globalString).draw(g);
                     break;
                 case addCircle:
                     new CADCircle(startPoint,endPoint,globalColor).draw(g);
@@ -94,14 +95,13 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 //        System.out.println(endPoint);
         switch (mode) {
             case addString:
-                arrayList.add(new CADString(startPoint,endPoint,globalColor));
+                arrayList.add(new CADString(startPoint,endPoint,globalColor,globalString));
                 break;
             case addCircle:
                 arrayList.add(new CADCircle(startPoint,endPoint,globalColor));
                 break;
             case addRectangle:
                 arrayList.add(new CADRectangle(startPoint,endPoint,globalColor));
-                System.out.println(arrayList.size());
                 break;
             case addLine:
                 arrayList.add(new CADLine(startPoint,endPoint,globalColor));
