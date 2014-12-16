@@ -1,5 +1,6 @@
 package cad;
 
+import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
@@ -17,5 +18,10 @@ public class CADRectangle extends Target {
 
         super.draw(g);
         g.drawRect(x,y,w,h);
+    }
+
+    @Override
+    public JsonObjectBuilder getJsonObjectBuilder() {
+        return super.getJsonObjectBuilder().add("type","rectangle");
     }
 }

@@ -1,5 +1,6 @@
 package cad;
 
+import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
@@ -15,5 +16,11 @@ public class CADCircle extends Target {
     public void draw(Graphics g) {
         super.draw(g);
         g.drawOval(x,y,w,h );
+    }
+
+    @Override
+    public JsonObjectBuilder getJsonObjectBuilder() {
+        return super.getJsonObjectBuilder()
+                .add("type","circle");
     }
 }

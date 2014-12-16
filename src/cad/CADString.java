@@ -1,5 +1,6 @@
 package cad;
 
+import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
@@ -35,5 +36,8 @@ public class CADString extends Target {
         g.drawString("??????",startPoint.x,startPoint.y);
     }
 
-
+    @Override
+    public JsonObjectBuilder getJsonObjectBuilder() {
+        return super.getJsonObjectBuilder().add("type","string");
+    }
 }

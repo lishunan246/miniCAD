@@ -1,5 +1,8 @@
 package cad;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import java.awt.*;
 import java.io.PrintWriter;
 
@@ -29,6 +32,7 @@ public class Target {
 
     private void updateXYWH()
     {
+        if(startPoint==null||endPoint==null)return;
         this.centerPoint=new Point((startPoint.x+endPoint.x)/2,(startPoint.y+endPoint.y)/2);
 
         if(startPoint.x<endPoint.x)
@@ -138,5 +142,15 @@ public class Target {
         //printWriter.print(color.toString());
         printWriter.print(startPoint.toString());
         printWriter.println(endPoint.toString());
+    }
+
+    public JsonObjectBuilder getJsonObjectBuilder() {
+        JsonObjectBuilder jsonObjectBuilder= Json.createObjectBuilder()
+                .add("startPoint.x",startPoint.x)
+                .add("startPoint.y",startPoint.y)
+                .add("endPoint.x",endPoint.x)
+                .add("endPoint.y",endPoint.y)
+                .add("color",color.getRGB());
+        return  jsonObjectBuilder;
     }
 }

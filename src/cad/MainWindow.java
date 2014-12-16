@@ -1,5 +1,7 @@
 package cad;
 
+import javax.json.*;
+import javax.json.Json;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -144,11 +146,22 @@ public class MainWindow extends JFrame implements ActionListener{
                 File file=new File(jFileChooser.getSelectedFile().toString());
                 try {
                     PrintWriter printWriter=new PrintWriter(file);
-                    //JsonObject jsonObject=new Json.createObjectBuilder()
-//                    for(Target target: paintPanel.arrayList)
-//                    {
-//                        target.saveToFile(printWriter);
-//                    }
+
+                    JsonArrayBuilder jsonArrayBuilder=Json.createArrayBuilder();
+
+                    for(Target target: paintPanel.arrayList)
+                    {
+                        jsonArrayBuilder.add(target.getJsonObjectBuilder());
+                    }
+
+                    JsonArray jsonArray=jsonArrayBuilder.build();
+
+                    JsonObject jsonObject1 =
+                            Json.createObjectBuilder()
+                                    .add("target", jsonArray)
+                                    .build();
+                    printWriter.print(jsonObject1);
+
                     printWriter.close();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
