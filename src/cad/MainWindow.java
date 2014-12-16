@@ -36,7 +36,17 @@ public class MainWindow extends JFrame implements ActionListener{
             JMenu menu=new JMenu("FILE");
             cadMenuBar.add(menu);
 
-                JMenuItem add=new JMenuItem("Save");
+        JMenuItem add=new JMenuItem("Open");
+        add.setActionCommand("open");
+        add.addActionListener(this);
+        menu.add(add);
+
+        add=new JMenuItem("Clear");
+        add.setActionCommand("clear");
+        add.addActionListener(this);
+        menu.add(add);
+
+                add=new JMenuItem("Save");
                 add.setActionCommand("save");
                 add.addActionListener(this);
                 menu.add(add);
@@ -170,6 +180,10 @@ public class MainWindow extends JFrame implements ActionListener{
                 }
 
             }
+        }
+        else if("clear".equals(e.getActionCommand()))
+        {
+            paintPanel.clear();
         }
     }
 }

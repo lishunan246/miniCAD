@@ -131,7 +131,7 @@ public class Target {
     public void setColor(Color color) {
         this.color=color;
     }
-    
+
 
     public JsonObjectBuilder getJsonObjectBuilder() {
         JsonObjectBuilder jsonObjectBuilder= Json.createObjectBuilder()

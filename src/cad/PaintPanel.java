@@ -10,10 +10,12 @@ import java.util.ArrayList;
  */
 public class PaintPanel extends JPanel implements MouseListener,MouseMotionListener{
 
+
+
     enum Mode{
         addString,addCircle,addRectangle,addLine,select,edit;
     }
-    protected Point startPoint,endPoint;
+    protected Point startPoint=new Point(0,0),endPoint=new Point(0,0);
     protected ArrayList <Target> arrayList=new ArrayList<Target>();
     public Mode mode=Mode.select;
     protected boolean showCurrentRec=false;
@@ -21,6 +23,12 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 
     //the selected target
     protected Target current;
+
+    public void clear() {
+        arrayList.clear();
+        current=null;
+        repaint();
+    }
 
     protected void paintComponent(Graphics g)
     {
@@ -111,6 +119,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        startPoint=e.getPoint();
 
     }
 
