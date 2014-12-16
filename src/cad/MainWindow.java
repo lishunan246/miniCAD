@@ -6,9 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * Created by lishunan on 14-12-13.
@@ -184,6 +182,49 @@ public class MainWindow extends JFrame implements ActionListener{
         else if("clear".equals(e.getActionCommand()))
         {
             paintPanel.clear();
+        }
+        else if("open".equals(e.getActionCommand()))
+        {
+            JFileChooser jFileChooser=new JFileChooser();
+            if(jFileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION)
+            {
+                File file=new File(jFileChooser.getSelectedFile().toString());
+                try {
+                    InputStream inputStream=new FileInputStream(file);
+                    JsonReader jsonReader=Json.createReader(inputStream);
+                    JsonObject jsonObject=jsonReader.readObject();
+                    JsonArray jsonArray= jsonObject.getJsonArray("target");
+
+                    paintPanel.clear();
+
+                    for(int i=0;i<jsonArray.size();i++)
+                    {
+                        JsonObject object=jsonArray.getJsonObject(i);
+                        String type=object.getString("type");
+                        switch (type)
+                        {
+                            case "circle":
+                                paintPanel.arrayList.add(new CADCircle(object));
+                                break;
+                            case "line":
+                                paintPanel.arrayList.add(new CADLine(object));
+                                break;
+                            case "rectangle":
+                                paintPanel.arrayList.add(new CADRectangle(object));
+                                break;
+                            case "string":
+                                paintPanel.arrayList.add(new CADString(object));
+                                break;
+                        }
+                    }
+
+
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "unable to open file");
+                }
+
+            }
         }
     }
 }

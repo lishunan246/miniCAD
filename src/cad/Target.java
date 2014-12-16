@@ -2,6 +2,7 @@ package cad;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.awt.*;
 import java.io.PrintWriter;
@@ -13,6 +14,16 @@ public class Target {
     protected Color color=Color.red;
     protected Point startPoint,endPoint,centerPoint;
     protected int x,y,w,h;
+
+    Target(JsonObject jsonObject)
+    {
+        startPoint=new Point(jsonObject.getInt("startPoint.x"),jsonObject.getInt("startPoint.y"));
+        endPoint=new Point(jsonObject.getInt("endPoint.x"),jsonObject.getInt("endPoint.y"));
+        int c=jsonObject.getInt("color");
+        color=new Color(c);
+        updateXYWH();
+    }
+
 
     Target(Point startPoint,Point endPoint,Color color)
     {
@@ -135,7 +146,7 @@ public class Target {
 
     public JsonObjectBuilder getJsonObjectBuilder() {
         JsonObjectBuilder jsonObjectBuilder= Json.createObjectBuilder()
-                .add("startPoint.x",startPoint.x)
+                .add("startPoint.x", startPoint.x)
                 .add("startPoint.y",startPoint.y)
                 .add("endPoint.x",endPoint.x)
                 .add("endPoint.y",endPoint.y)

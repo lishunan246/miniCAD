@@ -1,5 +1,6 @@
 package cad;
 
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
@@ -7,6 +8,12 @@ import java.awt.*;
  * Created by Li Shunan on 2014/12/14.
  */
 public class CADRectangle extends Target {
+
+    CADRectangle(JsonObject jsonObject)
+    {
+        super(jsonObject);
+    }
+
 
     CADRectangle(Point startPoint, Point endPoint, Color globalColor)
     {

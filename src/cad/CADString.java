@@ -1,5 +1,6 @@
 package cad;
 
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
@@ -11,6 +12,12 @@ public class CADString extends Target {
     private String type="string";
     static int count=0;
 
+    CADString(JsonObject jsonObject)
+    {
+        super(jsonObject);
+    }
+
+
     CADString(Point startPoint, Point endPoint, Color globalColor)
     {
         super(startPoint,endPoint,globalColor);
@@ -20,13 +27,7 @@ public class CADString extends Target {
 //        System.out.println(name);
     }
 
-    CADString(Point startPoint,Point endPoint)
-    {
 
-        super(startPoint,endPoint,Color .black);
-        count++;
-        string=String.valueOf(count);
-    }
 
 
 

@@ -1,11 +1,18 @@
 package cad;
 
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.awt.*;
 /**
  * Created by Li Shunan on 2014/12/14.
  */
 public class CADLine extends Target {
+
+    CADLine(JsonObject jsonObject)
+    {
+        super(jsonObject);
+    }
+
 
     CADLine(Point startPoint, Point endPoint, Color globalColor) {
         super(startPoint,endPoint,globalColor);
