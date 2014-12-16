@@ -24,12 +24,6 @@ public class Target {
         //System.out.println("created");
     }
 
-
-    Target()
-    {
-
-    }
-
     private void updateXYWH()
     {
         if(startPoint==null||endPoint==null)return;
@@ -137,12 +131,7 @@ public class Target {
     public void setColor(Color color) {
         this.color=color;
     }
-
-    public void saveToFile(PrintWriter printWriter) {
-        //printWriter.print(color.toString());
-        printWriter.print(startPoint.toString());
-        printWriter.println(endPoint.toString());
-    }
+    
 
     public JsonObjectBuilder getJsonObjectBuilder() {
         JsonObjectBuilder jsonObjectBuilder= Json.createObjectBuilder()
