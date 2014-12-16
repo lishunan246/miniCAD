@@ -1,6 +1,7 @@
 package cad;
 
 import java.awt.*;
+import java.io.PrintWriter;
 
 /**
  * Created by lishunan on 14-12-13.
@@ -131,5 +132,11 @@ public class Target {
 
     public void setColor(Color color) {
         this.color=color;
+    }
+
+    public void saveToFile(PrintWriter printWriter) {
+        //printWriter.print(color.toString());
+        printWriter.print(startPoint.toString());
+        printWriter.println(endPoint.toString());
     }
 }

@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import javax.json.*;
 
 /**
  * Created by lishunan on 14-12-13.
@@ -31,10 +35,15 @@ public class MainWindow extends JFrame implements ActionListener{
             JMenu menu=new JMenu("FILE");
             cadMenuBar.add(menu);
 
-                JMenuItem add=new JMenuItem("Quit");
-                add.setActionCommand("quit");
+                JMenuItem add=new JMenuItem("Save");
+                add.setActionCommand("save");
                 add.addActionListener(this);
                 menu.add(add);
+
+        add=new JMenuItem("Quit");
+        add.setActionCommand("quit");
+        add.addActionListener(this);
+        menu.add(add);
 
             menu=new JMenu("Add");
             cadMenuBar.add(menu);
@@ -125,6 +134,30 @@ public class MainWindow extends JFrame implements ActionListener{
                 paintPanel.current.setColor(color);
 
             paintPanel.repaint();
+        }
+        else if("save".equals(e.getActionCommand()))
+        {
+            JFileChooser jFileChooser=new JFileChooser();
+            //int n=jFileChooser.showSaveDialog(this);
+            if(jFileChooser.showSaveDialog(this)==JFileChooser.APPROVE_OPTION)
+            {
+                System.out.println(jFileChooser.getSelectedFile().toString());
+                File file=new File(jFileChooser.getSelectedFile().toString());
+                try {
+                    PrintWriter printWriter=new PrintWriter(file);
+                    //JsonObject jsonObject=new Json.createObjectBuilder()
+//                    for(Target target: paintPanel.arrayList)
+//                    {
+//                        target.saveToFile(printWriter);
+//                    }
+                    printWriter.close();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(this,"Fail saving to file");
+
+                }
+
+            }
         }
     }
 }
