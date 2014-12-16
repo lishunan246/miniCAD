@@ -1,7 +1,6 @@
 package cad;
 
 import javax.json.*;
-import javax.json.Json;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +12,10 @@ import java.io.*;
  * Created by Li Shunan on 14-12-13.
  */
 public class MainWindow extends JFrame implements ActionListener{
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private JMenuBar cadMenuBar;
     protected PaintPanel paintPanel;
+    private JMenuBar cadMenuBar;
 
     MainWindow()
     {

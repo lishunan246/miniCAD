@@ -2,30 +2,24 @@ package cad;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 /**
- * Created by lishunan on 14-12-13.
+ * It is a JPanel with an arrayList of Targets to be painted.
+ * Created by li Shunan on 14-12-13.
  */
 public class PaintPanel extends JPanel implements MouseListener,MouseMotionListener{
 
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public String globalString="text";
-
-    enum Mode{
-        addString,addCircle,addRectangle,addLine,select,edit;
-    }
+    public Mode mode = Mode.select;
     protected Point startPoint=new Point(0,0),endPoint=new Point(0,0);
-    protected ArrayList <Target> arrayList=new ArrayList<Target>();
-    public Mode mode=Mode.select;
+    protected ArrayList<Target> arrayList = new ArrayList<>();
     protected boolean showCurrentRec=false;
     protected Color globalColor=Color.BLACK;
-
     //the selected target
     protected Target current;
 
@@ -64,8 +58,6 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
                     break;
                 case select:
                     break;
-                case edit:
-                    break;
             }
 
         }
@@ -85,41 +77,39 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
     @Override
     public void mousePressed(MouseEvent e) {
 
-        startPoint=e.getPoint();
-        showCurrentRec=true;
+        startPoint = e.getPoint();
+        showCurrentRec = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        endPoint=e.getPoint();
+        endPoint = e.getPoint();
 
         switch (mode) {
             case addString:
-                arrayList.add(new CADString(startPoint,endPoint,globalColor,globalString));
+                arrayList.add(new CADString(startPoint, endPoint, globalColor, globalString));
                 break;
             case addCircle:
-                arrayList.add(new CADCircle(startPoint,endPoint,globalColor));
+                arrayList.add(new CADCircle(startPoint, endPoint, globalColor));
                 break;
             case addRectangle:
-                arrayList.add(new CADRectangle(startPoint,endPoint,globalColor));
+                arrayList.add(new CADRectangle(startPoint, endPoint, globalColor));
                 break;
             case addLine:
-                arrayList.add(new CADLine(startPoint,endPoint,globalColor));
+                arrayList.add(new CADLine(startPoint, endPoint, globalColor));
                 break;
             case select:
                 break;
-            case edit:
-                break;
         }
-        mode=Mode.select;
-        showCurrentRec=false;
+        mode = Mode.select;
+        showCurrentRec = false;
         repaint();
 
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        startPoint=e.getPoint();
+        startPoint = e.getPoint();
 
     }
 
@@ -131,27 +121,21 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
     @Override
     public void mouseDragged(MouseEvent e) {
 
-        if(mode==Mode.select)
-        {
-            if(current==null)
+        if (mode == Mode.select) {
+            if (current == null)
                 return;
-            if(current.canBeMoved(e.getPoint()))
-            {
+            if (current.canBeMoved(e.getPoint())) {
                 current.moveToPoint(e.getPoint());
-            }
-            else if(current.canChangeStartPoint(e.getPoint()))
-            {
+            } else if (current.canChangeStartPoint(e.getPoint())) {
                 current.changeStartPoint(e.getPoint());
-            }
-            else if(current.canChangeEndPoint(e.getPoint()))
-            {
+            } else if (current.canChangeEndPoint(e.getPoint())) {
                 current.changeEndPoint(e.getPoint());
             }
 
             repaint();
             return;
         }
-        endPoint=e.getPoint();
+        endPoint = e.getPoint();
 
         repaint();
     }
@@ -169,6 +153,10 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
         }
 
         repaint();
+    }
+
+    enum Mode {
+        addString, addCircle, addRectangle, addLine, select
     }
 
 

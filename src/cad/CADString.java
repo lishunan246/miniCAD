@@ -5,7 +5,7 @@ import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
- * The string class 
+ * The string class
  * Created by Li Shunan on 2014/12/13.
  */
 public class CADString extends Target {

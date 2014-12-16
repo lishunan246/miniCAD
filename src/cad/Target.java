@@ -6,7 +6,8 @@ import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
- * Created by lishunan on 14-12-13.
+ * It is extended by CADString, CADLine, CADCircle and CADRectangle
+ * Created by Li Shunan on 14-12-13.
  */
 public class Target {
     protected Color color=Color.red;
@@ -30,7 +31,6 @@ public class Target {
         this.color=color;
 
         updateXYWH();
-        //System.out.println("created");
     }
 
     private void updateXYWH()
@@ -83,12 +83,7 @@ public class Target {
 
 
     public boolean pick(Point point) {
-        if(veryClose(point,endPoint)||veryClose(point,startPoint)||veryClose(centerPoint,point))
-            return true;
-        else
-        {
-            return false;
-        }
+        return veryClose(point, endPoint) || veryClose(point, startPoint) || veryClose(centerPoint, point);
 
     }
 
@@ -143,12 +138,11 @@ public class Target {
 
 
     public JsonObjectBuilder getJsonObjectBuilder() {
-        JsonObjectBuilder jsonObjectBuilder= Json.createObjectBuilder()
+        return Json.createObjectBuilder()
                 .add("startPoint.x", startPoint.x)
                 .add("startPoint.y",startPoint.y)
                 .add("endPoint.x",endPoint.x)
                 .add("endPoint.y",endPoint.y)
                 .add("color",color.getRGB());
-        return  jsonObjectBuilder;
     }
 }
