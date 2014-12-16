@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import javax.json.*;
 
 /**
  * Created by lishunan on 14-12-13.
