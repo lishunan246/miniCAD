@@ -5,11 +5,11 @@ import javax.json.JsonObjectBuilder;
 import java.awt.*;
 
 /**
+ * The string class 
  * Created by Li Shunan on 2014/12/13.
  */
 public class CADString extends Target {
     private String string;
-    static int count=0;
 
     CADString(JsonObject jsonObject)
     {
@@ -21,13 +21,8 @@ public class CADString extends Target {
     CADString(Point startPoint, Point endPoint, Color globalColor,String string)
     {
         super(startPoint,endPoint,globalColor);
-        count++;
         this.string=string;
     }
-
-
-
-
 
     public void draw(Graphics g)
     {

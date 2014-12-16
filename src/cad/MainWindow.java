@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 /**
- * Created by lishunan on 14-12-13.
+ * This is the main JFrame of the program
+ * Created by Li Shunan on 14-12-13.
  */
 public class MainWindow extends JFrame implements ActionListener{
     /**
@@ -24,7 +25,7 @@ public class MainWindow extends JFrame implements ActionListener{
         this.setTitle("MiniCAD");
         this.setSize(800,600);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //add paint panel
 
@@ -35,8 +36,8 @@ public class MainWindow extends JFrame implements ActionListener{
 
         cadMenuBar=new JMenuBar();
 
-            JMenu menu=new JMenu("FILE");
-            cadMenuBar.add(menu);
+        JMenu menu=new JMenu("FILE");
+        cadMenuBar.add(menu);
 
         JMenuItem add=new JMenuItem("Open");
         add.setActionCommand("open");
@@ -48,55 +49,55 @@ public class MainWindow extends JFrame implements ActionListener{
         add.addActionListener(this);
         menu.add(add);
 
-                add=new JMenuItem("Save");
-                add.setActionCommand("save");
-                add.addActionListener(this);
-                menu.add(add);
+        add=new JMenuItem("Save");
+        add.setActionCommand("save");
+        add.addActionListener(this);
+        menu.add(add);
 
         add=new JMenuItem("Quit");
         add.setActionCommand("quit");
         add.addActionListener(this);
         menu.add(add);
 
-            menu=new JMenu("ADD");
-            cadMenuBar.add(menu);
+        menu=new JMenu("ADD");
+        cadMenuBar.add(menu);
 
-                JMenuItem jMenuItem=new JMenuItem("String");
-                jMenuItem.setActionCommand("addString");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+        JMenuItem jMenuItem=new JMenuItem("String");
+        jMenuItem.setActionCommand("addString");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
 
-                jMenuItem =new JMenuItem("Line");
-                jMenuItem.setActionCommand("addLine");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+        jMenuItem =new JMenuItem("Line");
+        jMenuItem.setActionCommand("addLine");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
 
-                jMenuItem =new JMenuItem("Rectangle");
-                jMenuItem.setActionCommand("addRectangle");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+        jMenuItem =new JMenuItem("Rectangle");
+        jMenuItem.setActionCommand("addRectangle");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
 
-                jMenuItem =new JMenuItem("Circle");
-                jMenuItem.setActionCommand("addCircle");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+        jMenuItem =new JMenuItem("Circle");
+        jMenuItem.setActionCommand("addCircle");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
 
-            menu=new JMenu("EDIT");
-                jMenuItem=new JMenuItem("Select");
-                jMenuItem.setActionCommand("select");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
+        menu=new JMenu("EDIT");
+        jMenuItem=new JMenuItem("Select");
+        jMenuItem.setActionCommand("select");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
 
         jMenuItem=new JMenuItem("Delete");
         jMenuItem.setActionCommand("delete");
         jMenuItem.addActionListener(this);
         menu.add(jMenuItem);
 
-                jMenuItem=new JMenuItem("Choose color");
-                jMenuItem.setActionCommand("chooseColor");
-                jMenuItem.addActionListener(this);
-                menu.add(jMenuItem);
-            cadMenuBar.add(menu);
+        jMenuItem=new JMenuItem("Choose color");
+        jMenuItem.setActionCommand("chooseColor");
+        jMenuItem.addActionListener(this);
+        menu.add(jMenuItem);
+        cadMenuBar.add(menu);
 
         cadMenuBar.setVisible(true);
 
@@ -142,7 +143,7 @@ public class MainWindow extends JFrame implements ActionListener{
         }
         else if("chooseColor".equals(e.getActionCommand()))
         {
-            Color color=JColorChooser.showDialog(this,"Choose a color",Color.BLACK);
+            Color color=JColorChooser.showDialog(this, "Choose a color", Color.BLACK);
             paintPanel.globalColor=color;
             if(paintPanel.current!=null)
                 paintPanel.current.setColor(color);
@@ -155,7 +156,6 @@ public class MainWindow extends JFrame implements ActionListener{
 
             if(jFileChooser.showSaveDialog(this)==JFileChooser.APPROVE_OPTION)
             {
-                System.out.println(jFileChooser.getSelectedFile().toString());
                 File file=new File(jFileChooser.getSelectedFile().toString());
                 try {
                     PrintWriter printWriter=new PrintWriter(file);
@@ -246,7 +246,6 @@ public class MainWindow extends JFrame implements ActionListener{
                     break;
                 }
             }
-            //paintPanel.arrayList.remove(paintPanel.current);
             repaint();
         }
     }
