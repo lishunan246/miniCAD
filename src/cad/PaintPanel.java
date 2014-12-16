@@ -17,6 +17,7 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
     protected ArrayList <Target> arrayList=new ArrayList<Target>();
     public Mode mode=Mode.select;
     protected boolean showCurrentRec=false;
+    protected Color globalColor=Color.BLACK;
 
     //the selected target
     protected Target current;
@@ -38,16 +39,16 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
         {
             switch (mode) {
                 case addString:
-                    new CADString(startPoint,endPoint).draw(g);
+                    new CADString(startPoint,endPoint,globalColor).draw(g);
                     break;
                 case addCircle:
-                    new CADCircle(startPoint,endPoint).draw(g);
+                    new CADCircle(startPoint,endPoint,globalColor).draw(g);
                     break;
                 case addRectangle:
-                    new CADRectangle(startPoint, endPoint).draw(g);
+                    new CADRectangle(startPoint, endPoint,globalColor).draw(g);
                     break;
                 case addLine:
-                    new CADLine(startPoint,endPoint).draw(g);
+                    new CADLine(startPoint,endPoint,globalColor).draw(g);
                     break;
                 case select:
                     break;
@@ -85,17 +86,17 @@ public class PaintPanel extends JPanel implements MouseListener,MouseMotionListe
 //        System.out.println(endPoint);
         switch (mode) {
             case addString:
-                arrayList.add(new CADString(startPoint,endPoint));
+                arrayList.add(new CADString(startPoint,endPoint,globalColor));
                 break;
             case addCircle:
-                arrayList.add(new CADCircle(startPoint,endPoint));
+                arrayList.add(new CADCircle(startPoint,endPoint,globalColor));
                 break;
             case addRectangle:
-                arrayList.add(new CADRectangle(startPoint,endPoint));
+                arrayList.add(new CADRectangle(startPoint,endPoint,globalColor));
                 System.out.println(arrayList.size());
                 break;
             case addLine:
-                arrayList.add(new CADLine(startPoint,endPoint));
+                arrayList.add(new CADLine(startPoint,endPoint,globalColor));
                 break;
             case select:
                 break;

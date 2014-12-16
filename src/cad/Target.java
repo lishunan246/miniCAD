@@ -6,14 +6,15 @@ import java.awt.*;
  * Created by lishunan on 14-12-13.
  */
 public class Target {
-    protected Color color;
+    protected Color color=Color.red;
     protected Point startPoint,endPoint,centerPoint;
     protected int x,y,w,h;
 
-    Target(Point startPoint,Point endPoint)
+    Target(Point startPoint,Point endPoint,Color color)
     {
         this.startPoint=startPoint;
         this.endPoint=endPoint;
+        this.color=color;
 
         updateXYWH();
         //System.out.println("created");
@@ -54,7 +55,9 @@ public class Target {
 
 
     public void draw(Graphics g)
-    {}
+    {
+        g.setColor(color);
+    }
 
     public void emphasize(Graphics g)
     {
@@ -66,6 +69,7 @@ public class Target {
     private void emphasize(Point point,Graphics g)
     {
         int a=4;
+        g.setColor(color);
         g.fillRect(point.x-a,point.y-a,2*a,2*a);
     }
 
@@ -123,5 +127,9 @@ public class Target {
     public void changeEndPoint(Point point) {
         endPoint=point;
         updateXYWH();
+    }
+
+    public void setColor(Color color) {
+        this.color=color;
     }
 }

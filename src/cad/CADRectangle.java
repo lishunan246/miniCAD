@@ -7,13 +7,15 @@ import java.awt.*;
  */
 public class CADRectangle extends Target {
 
-    CADRectangle(Point startPoint,Point endPoint)
+    CADRectangle(Point startPoint, Point endPoint, Color globalColor)
     {
-        super(startPoint, endPoint);
+        super(startPoint, endPoint,globalColor);
     }
 
     @Override
     public void draw(Graphics g) {
+
+        super.draw(g);
         g.drawRect(x,y,w,h);
     }
 }

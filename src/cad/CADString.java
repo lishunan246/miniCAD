@@ -10,8 +10,9 @@ public class CADString extends Target {
     private String type="string";
     static int count=0;
 
-    CADString()
+    CADString(Point startPoint, Point endPoint, Color globalColor)
     {
+        super(startPoint,endPoint,globalColor);
         count++;
         string=String.valueOf(count);
 //        name=type+" "+string;
@@ -21,7 +22,7 @@ public class CADString extends Target {
     CADString(Point startPoint,Point endPoint)
     {
 
-        super(startPoint,endPoint);
+        super(startPoint,endPoint,Color .black);
         count++;
         string=String.valueOf(count);
     }
@@ -30,6 +31,7 @@ public class CADString extends Target {
 
     public void draw(Graphics g)
     {
+        super.draw(g);
         g.drawString("??????",startPoint.x,startPoint.y);
     }
 

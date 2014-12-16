@@ -66,10 +66,10 @@ public class MainWindow extends JFrame implements ActionListener{
                 jMenuItem.addActionListener(this);
                 menu.add(jMenuItem);
 
-//                jMenuItem=new JMenuItem("Resize");
-//                jMenuItem.setActionCommand("resize");
-//                jMenuItem.addActionListener(this);
-//                menu.add(jMenuItem);
+                jMenuItem=new JMenuItem("Choose color");
+                jMenuItem.setActionCommand("chooseColor");
+                jMenuItem.addActionListener(this);
+                menu.add(jMenuItem);
             cadMenuBar.add(menu);
 
         cadMenuBar.setVisible(true);
@@ -116,6 +116,15 @@ public class MainWindow extends JFrame implements ActionListener{
         else if("select".equals(e.getActionCommand()))
         {
             paintPanel.mode= PaintPanel.Mode.select;
+        }
+        else if("chooseColor".equals(e.getActionCommand()))
+        {
+            Color color=new JColorChooser().showDialog(this,"Choose a color",Color.BLACK);
+            paintPanel.globalColor=color;
+            if(paintPanel.current!=null)
+                paintPanel.current.setColor(color);
+
+            paintPanel.repaint();
         }
     }
 }
